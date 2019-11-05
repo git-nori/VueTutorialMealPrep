@@ -14,6 +14,9 @@
                             >{{ ingredient }}</li>
                         </ul>
                     </v-card-text>
+                    <v-card-actions>
+                        <v-btn color="green" dark>Order</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>
