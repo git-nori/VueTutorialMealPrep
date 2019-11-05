@@ -84,6 +84,14 @@ export default new Vuex.Store({
                     commit('setIsAuthenticated', false)
                     router.push('/')
                 })
+        },
+        addRecipe ({ state }, payload) {
+            // usersというテーブルにレシピの名前を格納する
+            firebase
+                .database()
+                .ref('users')
+                .child(state.user.user.uid)
+                .push(payload.recipe.label)
         }
     },
     getters: {

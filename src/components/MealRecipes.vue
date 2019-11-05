@@ -15,7 +15,7 @@
                         </ul>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="green" dark>Order</v-btn>
+                        <v-btn color="green" dark @click="orderRecipe(item)">Order</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -28,7 +28,17 @@ import { mapGetters } from 'vuex';
 export default {
     name: 'MealRecipes',
     computed: {
-        ...mapGetters(['recipes'])
+        ...mapGetters(['recipes', 'isAuthenticated'])
+    },
+    methods: {
+        // ORDERボタン押下時にfirestoreにレシピを保存する
+        orderRecipe(item) {
+            if (this.isAuthenticated) {
+                this.$store.dispatch('addRecipe', item);
+            } else {
+                this.$router.push('/signin'); // signin画面へ遷移
+            }
+        }
     }
 };
 </script>
