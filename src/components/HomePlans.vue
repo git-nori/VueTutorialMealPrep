@@ -21,6 +21,14 @@
                     <v-card-text>
                         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris felis, varius rutrum massa a, dignissim ornare dui. Cras eget velit eu dui tristique lobortis sit amet vel tellus.</div>
                     </v-card-text>
+                    <v-card-actions v-if="['menu'].includes($route.name)">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('keto')"
+                        >Select This Plan</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
 
@@ -41,6 +49,14 @@
                     <v-card-text>
                         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris felis, varius rutrum massa a, dignissim ornare dui. Cras eget velit eu dui tristique lobortis sit amet vel tellus.</div>
                     </v-card-text>
+                    <v-card-actions v-if="['menu'].includes($route.name)">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('paleo')"
+                        >Select This Plan</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
 
@@ -61,6 +77,14 @@
                     <v-card-text>
                         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris felis, varius rutrum massa a, dignissim ornare dui. Cras eget velit eu dui tristique lobortis sit amet vel tellus.</div>
                     </v-card-text>
+                    <v-card-actions v-if="['menu'].includes($route.name)">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('vegan')"
+                        >Select This Plan</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>
@@ -68,7 +92,13 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    name: 'HomePlans'
+    name: 'HomePlans',
+    methods: {
+        showRecipes(plan) {
+            this.$store.dispatch('getRecipes', plan);
+        }
+    }
 };
 </script>
