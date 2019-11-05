@@ -8,7 +8,7 @@
             disable-resize-watcher
         >
             <v-list>
-                <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item v-for="(item, index) in items" :key="index" :to="item.title">
                     <v-list-item-content>
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                         <v-divider :key="`divider-${index}`"></v-divider>
@@ -25,8 +25,14 @@
             </router-link>
             <v-btn text color="brown darken-3" to="/menu">Menu</v-btn>
             <v-spacer class="hidden-sm-and-down"></v-spacer>
-            <v-btn text color="brown darken-3" class="hidden-sm-and-down" to="/signin">Sign in</v-btn>
-            <v-btn color="brown lighten-3" class="hidden-sm-and-down" to="/join">JOIN</v-btn>
+            <div v-if="!isAuthenticated" class="hidden-sm-and-down">
+                <v-btn text color="brown darken-3" class="hidden-sm-and-down" to="/signin">Sign in</v-btn>
+                <v-btn color="brown lighten-3" class="hidden-sm-and-down" to="/join">JOIN</v-btn>
+            </div>
+            <div v-else>
+                <v-btn text color="brown darken-3" to="/about">About</v-btn>
+                <v-btn text color="white" dark @click="logout">Logout</v-btn>
+            </div>
         </v-app-bar>
     </span>
 </template>
@@ -38,8 +44,23 @@ export default {
         return {
             appTitle: 'MealPrep',
             drawer: false,
-            items: [{ title: 'Menu' }, { title: 'Sign in' }, { title: 'Join' }]
+            items: [
+                { title: 'Menu' },
+                { title: 'About' },
+                { title: 'Signin' },
+                { title: 'Join' }
+            ]
         };
+    },
+    computed: {
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('userSignOut');
+        }
     }
 };
 </script>

@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import store from './store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -20,7 +21,10 @@ export default new Router({
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () =>
-                import(/* webpackChunkName: "about" */ './views/About.vue')
+                import(/* webpackChunkName: "about" */ './views/About.vue'),
+            meta: {
+                authRequired: true
+            }
         },
         {
             path: '/menu',
@@ -39,3 +43,21 @@ export default new Router({
         }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.authRequired)) {
+        // toに指定されているリンクは認証が必要な場合
+        if (!store.state.user) {
+            // storeのuserに値が格納されていない場合(loginしていない)
+            next({
+                path: 'signin'
+            });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
+export default router;
