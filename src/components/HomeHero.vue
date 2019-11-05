@@ -1,6 +1,7 @@
 // d-flex justify-center align-center 
 <template>
-    <v-container fluid class="pa-5 home-hero">
+    <!-- max-height: 100vh => コンテナがビューポートの高さの100％になるよう設定 -->
+    <v-container fluid class="pa-5 home-hero" style="max-height: 100vh">
         <v-row>
             <v-col
                 class="d-flex justify-center display-4 font-weight-medium white--text"
