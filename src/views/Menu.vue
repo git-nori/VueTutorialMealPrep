@@ -1,14 +1,19 @@
 <template>
-    <v-container>
-        <v-row>
-            <h1>Menu Page</h1>
-        </v-row>
-    </v-container>
+    <div>
+        <home-plans></home-plans>
+        <meal-recipes></meal-recipes>
+    </div>
 </template>
 
 <script>
+import HomePlans from '@/components/HomePlans';
+import MealRecipes from '@/components/MealRecipes';
 export default {
-    name: 'Menu'
+    name: 'Menu',
+    components: {
+        HomePlans,
+        MealRecipes
+    }
 };
 </script>
 
