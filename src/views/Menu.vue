@@ -1,14 +1,14 @@
 <template>
     <v-container>
         <v-row>
-            <h1>About Page</h1>
+            <h1>Menu Page</h1>
         </v-row>
     </v-container>
 </template>
 
 <script>
 export default {
-    name: 'About'
+    name: 'Menu'
 };
 </script>
 
