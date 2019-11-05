@@ -8,7 +8,7 @@
             disable-resize-watcher
         >
             <v-list>
-                <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item v-for="(item, index) in items" :key="index" :to="item.title">
                     <v-list-item-content>
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                         <v-divider :key="`divider-${index}`"></v-divider>
@@ -43,7 +43,7 @@ export default {
         return {
             appTitle: 'MealPrep',
             drawer: false,
-            items: [{ title: 'Menu' }, { title: 'Sign in' }, { title: 'Join' }]
+            items: [{ title: 'Menu' }, { title: 'Signin' }, { title: 'Join' }]
         };
     },
     computed: {
