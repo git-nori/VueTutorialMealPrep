@@ -70,9 +70,24 @@ export default new Vuex.Store({
                     commit('setIsAuthenticated', false)
                     router.push('/')
                 })
+        },
+        userSignOut ({ commit }) {
+            firebase
+                .auth().signOut()
+                .then(() => {
+                    commit('setUser', null)
+                    commit('setIsAuthenticated', false)
+                    router.push('/')
+                })
+                .catch(() => {
+                    commit('setUser', null)
+                    commit('setIsAuthenticated', false)
+                    router.push('/')
+                })
         }
     },
     getters: {
-        recipes: state => state.recipes
+        recipes: state => state.recipes,
+        isAuthenticated: state => state.isAuthenticated
     }
 });
