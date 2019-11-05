@@ -30,6 +30,7 @@
                 <v-btn color="brown lighten-3" class="hidden-sm-and-down" to="/join">JOIN</v-btn>
             </div>
             <div v-else>
+                <v-btn text color="brown darken-3" to="/about">About</v-btn>
                 <v-btn text color="white" dark @click="logout">Logout</v-btn>
             </div>
         </v-app-bar>
@@ -43,7 +44,12 @@ export default {
         return {
             appTitle: 'MealPrep',
             drawer: false,
-            items: [{ title: 'Menu' }, { title: 'Signin' }, { title: 'Join' }]
+            items: [
+                { title: 'Menu' },
+                { title: 'About' },
+                { title: 'Signin' },
+                { title: 'Join' }
+            ]
         };
     },
     computed: {
